@@ -1,0 +1,19 @@
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+
+app.set("view engine","ejs");
+app.use(bodyParser.urlEncoded({extender:true}));
+app.use(bodyParser.json());
+
+app.get("/",(req,res)=>{
+
+  res.send("Rota inícial");
+
+});
+
+app.listen(8080,()=>{
+
+ console.log("app online");
+
+});
