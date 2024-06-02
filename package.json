@@ -1,0 +1,27 @@
+{
+  "name": "crud_core",
+  "version": "1.0.0",
+  "description": "crud",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanProgramador/crud_core.git"
+  },
+  "author": "Ivan Rodrigues",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivanProgramador/crud_core/issues"
+  },
+  "homepage": "https://github.com/ivanProgramador/crud_core#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mysql2": "^3.10.0",
+    "nodemon": "^3.1.2",
+    "sequelize": "^6.37.3"
+  }
+}
