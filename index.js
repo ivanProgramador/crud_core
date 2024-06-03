@@ -15,18 +15,22 @@ connection.authenticate(()=>{console.log('conectado');}).catch(err=>{console.log
 //modelos 
 const Estoque = require("./models/Estoque/Estoque");
 const Funcionario = require("./models/Funcionario/Funcionario");
+const Produto = require("./models/Produto/Produto");
 
 //controllers
 const estoqueController = require("./models/Estoque/estoqueController");
 const funcionarioController = require("./models/Funcionario/funcionarioController");
+const produtoController = require("./models/Produto/produtoController");
 
 
 //rotas
 app.get("/principal",(req,res)=>{
     res.render('index');
+});
 
-})
 app.get("/",estoqueController);
+app.get("/",funcionarioController);
+app.get("/",produtoController);
 
 
 app.listen(8080,()=>{

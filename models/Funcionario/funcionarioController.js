@@ -11,7 +11,13 @@ router.get("/funcionario/cadastro",(req,res)=>{
     res.render('cadastro');
 });
 router.get("/funcionario/edicao/:id",(req,res)=>{
-    res.render('edit');
+    
+    var id = req.params.id;
+
+    Funcionario.findOne({id:id}).then(funcionario=>{
+        res.render('edit',{funcionario:funcionario});
+    })
+    
 });
 
 //rotas de ação 

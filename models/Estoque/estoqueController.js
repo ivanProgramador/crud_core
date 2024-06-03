@@ -11,7 +11,15 @@ router.get("/estoque/new",(req,res)=>{
     res.render('formulario de cadastro');
 });
 
-router.get("/estoque/edit/:id",()=>{
+router.get("/estoque/edit/:id",(req,res)=>{
+
+    var id = req.params.id;
+
+    Estoque.findOne({id:id}).then(estoque=>{
+        
+        res.render('edit',{estoque:estoque});
+    })
+
     res.render("formulario de edição");
 });
 
