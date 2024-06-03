@@ -11,7 +11,7 @@ router.get("/estoque/new",(req,res)=>{
     res.render('formulario de cadastro');
 });
 
-router.get("/estoque/edit",()=>{
+router.get("/estoque/edit/:id",()=>{
     res.render("formulario de edição");
 });
 
@@ -27,7 +27,7 @@ router.post("/estoque/cadastrar",(req,res)=>{
 
 router.post("/estoque/editar",(req,res)=>{
     var {id,nome,codigo,descricao} = req.body;
-    Estoque.update({nome:nome,codigo,descricao},{where:{id:id}}).then(()=>{
+    Estoque.update({nome:nome,codigo:codigo,descricao:descricao},{where:{id:id}}).then(()=>{
         res.redirect("/estoque/inicio");
     });
 });
@@ -36,7 +36,7 @@ router.post("/estoque/apagar/:id",(req,res)=>{
     
     var id = req.params.id;
 
-    Estoque.destroy({id:id}).then(()=>{
+    Estoque.destroy({where:{id:id}}).then(()=>{
         res.redirect("/estoque/inicio");
     });
 });

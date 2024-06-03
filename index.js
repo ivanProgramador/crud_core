@@ -14,9 +14,11 @@ connection.authenticate(()=>{console.log('conectado');}).catch(err=>{console.log
 
 //modelos 
 const Estoque = require("./models/Estoque/Estoque");
+const Funcionario = require("./models/Funcionario/Funcionario");
 
 //controllers
 const estoqueController = require("./models/Estoque/estoqueController");
+const funcionarioController = require("./models/Funcionario/funcionarioController");
 
 
 //rotas
