@@ -24,15 +24,15 @@ const produtoController = require("./models/Produto/produtoController");
 
 
 //rotas
-app.get("/principal",(req,res)=>{
+app.get("/",(req,res)=>{
     res.render('index');
 });
 
-app.get("/",estoqueController);
-app.get("/",funcionarioController);
-app.get("/",produtoController);
+app.use("/",estoqueController);
+app.use("/",funcionarioController);
+app.use("/",produtoController);
 
 
 app.listen(8080,()=>{
     console.log("app online");
-})
+});
