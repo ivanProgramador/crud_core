@@ -1,0 +1,94 @@
+<%- include('../partials/header.ejs') -%>
+<%- include('../partials/navbar.ejs') -%>
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Cadastro de produtos</h2>
+        </div>
+        <div class="card-body">
+
+            <form action="/produto/cadastrar" method="post">
+
+                <label for="nome">Nome</label>
+                <input class="form-control" type="text" name="nome">
+
+                <label for="nome">Codigo</label>
+                <input class="form-control" type="text" name="codigo">
+
+                <label for="estoque">Descrição</label>
+                <input class="form-control" type="text" name="descricao">
+                
+                <label class="mt-2" for="nome">Estoque</label>
+                <select name="estoque" class="form-control mt-4">
+                    <% estoques.forEach(estoque=>{ %>
+                        <option value="<%= estoque.id %>"><%= estoque.nome %> </option>
+                    <% }) %>
+                </select>
+
+                
+                <label class="mt-2" for="nome">Preço</label>
+                <input class="form-control" type="text" name="preco">
+
+                <label for="nome">Unidade</label>
+                <input class="form-control" type="text" name="unidade">
+               
+
+
+                <button class="btn btn-success mt-2">Cadastrar</button>
+            </form>
+
+            <hr>
+            <div style="overflow-y: scroll; max-height: 500px;" >
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Codigo</td>
+                        <td>Nome</td>
+                        <td>Descrição</td>
+                        <td>Estoque</td>
+                        <td>Unidade</td>
+                        <td>Preço</td>
+                        <td>Ações</td>
+                    </tr>
+                </thead>
+                <tbody>
+                 <% produtos.forEach(produto=>{ %> 
+
+                  <tr>
+                     <td><%= produto.codigo %></td>
+                     <td><%= produto.nome %></td>
+                     <td><%= produto.descricao %> </td>
+                     <td><%= produto.estoque %> </td>
+                     <td><%= produto.unidade %> </td>
+                     <td><%= produto.preco %> </td>
+                     <td>
+                       <a class="btn btn-warning" href="/produto/editar/<%= produto.id %>">Editar</a>
+                       <form style="display: inline;" action="/produto/apagar" method="post">
+                         <input type="hidden" name="id" value="<%= produto.id %>"></input>
+
+                         <button type="submit" class="btn btn-danger">Apagar</button>
+
+                       </form>
+                     </td>
+                  </tr>       
+
+
+                 <% }) %> 
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+  </div>
+
+
+
+  
+ 
+<%- include('../partials/footer.ejs') -%>

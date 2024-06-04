@@ -1,0 +1,58 @@
+<%- include('../partials/header.ejs') -%>
+<%- include('../partials/navbar.ejs') -%>
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Cadastro de produtos</h2>
+        </div>
+        <div class="card-body">
+
+            <form action="/produto/editar" method="post">
+
+                <input type="hidden" name="id" value="<%= produto.id %>" >
+
+                <label for="nome">Nome</label>
+                <input value="<%= produto.nome %>" class="form-control" type="text" name="nome">
+
+                <label for="nome">Codigo</label>
+                <input value="<%= produto.codigo %>" class="form-control" type="text" name="codigo">
+
+                <label for="estoque">Descrição</label>
+                <input value="<%= produto.descricao %>"class="form-control" type="text" name="descricao">
+                
+                <label class="mt-2" for="nome">Estoque</label>
+                <select value="<%= produto.estoque %>" name="estoque" class="form-control mt-4">
+                    <% estoques.forEach(estoque=>{ %>
+                        <option value="<%= estoque.nome %>"><%= estoque.nome %> </option>
+                    <% }) %>
+                </select>
+
+                
+                <label class="mt-2" for="nome">Preço</label>
+                <input value="<%= produto.preco %>" class="form-control" type="text" name="preco">
+
+                <label for="nome">Unidade</label>
+                <input value="<%= produto.unidade %>" class="form-control" type="text" name="unidade">
+               
+
+
+                <button class="btn btn-success mt-2">Cadastrar</button>
+            </form>
+
+            
+           
+        </div>
+    </div>
+</div>
+
+
+
+  </div>
+
+
+
+  
+ 
+<%- include('../partials/footer.ejs') -%>

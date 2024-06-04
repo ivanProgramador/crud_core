@@ -20,16 +20,12 @@ const Produto = connection.define('produto',{
         type: DataTypes.STRING,
         allowNull: false,
     },
-    tipo:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     preco:{
         type: DataTypes.DOUBLE,
         allowNull: false,
     },
     unidade:{
-        type: DataTypes.DOUBLE,
+        type: DataTypes.STRING,
         allowNull: false,
     }
 });
