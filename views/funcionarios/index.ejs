@@ -1,0 +1,75 @@
+<%- include('../partials/header.ejs') -%>
+<%- include('../partials/navbar.ejs') -%>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Cadastro de funcionarios</h2>
+        </div>
+        <div class="card-body">
+
+            <form action="/funcionario/cadastrar" method="post">
+
+                <label for="nome">Nome</label>
+                <input class="form-control" type="text" name="nome">
+
+                <label for="senha">Senha</label>
+                <input class="form-control" type="text" name="senha">
+
+                <label for="cargo">Cargo</label>
+                <input class="form-control" type="text" name="cargo">
+
+                <label for="login">Login</label>
+                <input class="form-control" type="text" name="login">
+               
+
+
+                <button class="btn btn-success mt-2">Cadastrar</button>
+            </form>
+
+            <hr>
+            <div style="overflow-y: scroll; max-height: 500px;" >
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Nome</td>
+                        <td>Senha</td>
+                        <td>Cargo</td>
+                        <td>Login</td>
+                        <td>Ações</td>
+                    </tr>
+                </thead>
+                <tbody>
+                 <% funcionarios.forEach(funcionario=>{ %> 
+
+                  <tr>
+                     <td><%= funcionario.id %></td>
+                     <td><%= funcionario.nome %></td>
+                     <td><%= funcionario.senha %> </td>
+                     <td><%= funcionario.cargo %> </td>
+                     <td><%= funcionario.login %> </td>
+                     <td>
+                       <a class="btn btn-warning" href="/funcionario/edicao/<%= funcionario.id %>">Editar</a>
+
+                       <form style="display: inline;" action="/funcionario/apagar" method="post">
+                         <input type="hidden" name="id" value="<%= funcionario.id %>"></input>
+
+                         <button type="submit" class="btn btn-danger">Apagar</button>
+
+                       </form>
+                     </td>
+                  </tr>       
+
+
+                 <% }) %> 
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+  </div>
+<%- include('../partials/footer.ejs') -%>

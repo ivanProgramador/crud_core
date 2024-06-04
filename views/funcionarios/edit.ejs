@@ -1,0 +1,39 @@
+<%- include('../partials/header.ejs') -%>
+<%- include('../partials/navbar.ejs') -%>
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Cadastro de funcionarios</h2>
+        </div>
+        <div class="card-body">
+
+            <form action="/funcionario/editar" method="post">
+
+                <input type="hidden" name="id" value="<%= funcionario.id %>">
+
+                <label for="nome">Nome</label>
+                <input value="<%= funcionario.nome %>" class="form-control" type="text" name="nome">
+
+                <label for="senha">Senha</label>
+                <input value="<%= funcionario.senha %>" class="form-control" type="text" name="senha">
+
+                <label for="cargo">Cargo</label>
+                <input value="<%= funcionario.cargo %>" class="form-control" type="text" name="cargo">
+
+                <label for="login">Login</label>
+                <input value="<%= funcionario.login %>" class="form-control" type="text" name="login">
+               
+
+
+                <button class="btn btn-success mt-2">Atualizar</button>
+            </form>
+
+           
+        </div>
+    </div>
+</div>
+
+
+
+  </div>
+<%- include('../partials/footer.ejs') -%>

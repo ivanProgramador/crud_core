@@ -12,7 +12,7 @@ const Funcionario = connection.define('funcionario',{
         allowNull: false,
      },
      cargo:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
      },
      login:{

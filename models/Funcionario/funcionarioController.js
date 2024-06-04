@@ -5,7 +5,12 @@ const { where } = require("sequelize");
 
 //rotas de formulario
 router.get("/funcionario/inicio",(req,res)=>{
-    res.render('index');
+
+    Funcionario.findAll().then(funcionarios=>{
+        res.render('funcionarios/index',{funcionarios:funcionarios});
+
+    })
+   
 });
 router.get("/funcionario/cadastro",(req,res)=>{
     res.render('cadastro');
@@ -15,14 +20,14 @@ router.get("/funcionario/edicao/:id",(req,res)=>{
     var id = req.params.id;
 
     Funcionario.findOne({id:id}).then(funcionario=>{
-        res.render('edit',{funcionario:funcionario});
+        res.render('funcionarios/edit',{funcionario:funcionario});
     })
     
 });
 
 //rotas de ação 
 
-router.post("/cadastrar",(req,res)=>{
+router.post("/funcionario/cadastrar",(req,res)=>{
 
     var {nome,senha,cargo,login} = req.body;
 
@@ -37,15 +42,15 @@ router.post("/funcionario/editar",(req,res)=>{
 
     var {id,nome,senha,cargo,login} = req.body;
 
-    Funcionario.update({nome,senha,cargo,login},{where:{id:id}}).then(()=>{
+    Funcionario.update({nome:nome,senha:senha,cargo:cargo,login:login},{where:{id:id}}).then(()=>{
         res.redirect("/funcionario/inicio");
     })
 
 });
 
-router.post("/funcionario/apagar/:id",(req,res)=>{
+router.post("/funcionario/apagar",(req,res)=>{
 
-    var id = req.params.id;
+    var id = req.body.id;
 
     Funcionario.destroy({where:{id:id}}).then(()=>{
         res.redirect("/funcionario/inicio");
