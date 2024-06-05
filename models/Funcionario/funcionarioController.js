@@ -2,16 +2,18 @@ const express = require("express");
 const router = express.Router();
 const Funcionario = require("../Funcionario/Funcionario");
 const { where } = require("sequelize");
+const Cargo = require("../cargo/Cargo");
 
 //rotas de formulario
 router.get("/funcionario/inicio",(req,res)=>{
 
     Funcionario.findAll().then(funcionarios=>{
-        res.render('funcionarios/index',{funcionarios:funcionarios});
-
-    })
-   
+        Cargo.findAll().then(cargos=>{
+            res.render('funcionarios/index',{funcionarios:funcionarios,cargos:cargos});
+        });
+    });
 });
+
 router.get("/funcionario/cadastro",(req,res)=>{
     res.render('cadastro');
 });

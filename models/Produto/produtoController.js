@@ -5,8 +5,10 @@ const Estoque = require("../Estoque/Estoque");
 
 //rotas de formulario
 router.get("/produto/inicio",(req,res)=>{
+
     Produto.findAll().then(produtos=>{
        Estoque.findAll().then(estoques=>{
+        
         res.render('produtos/index',{produtos:produtos,estoques:estoques});
     });
  });

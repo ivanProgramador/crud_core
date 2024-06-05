@@ -15,8 +15,14 @@
                 <label for="senha">Senha</label>
                 <input class="form-control" type="text" name="senha">
 
-                <label for="cargo">Cargo</label>
-                <input class="form-control" type="text" name="cargo">
+                <label class="mt-2" for="nome">Cargos</label>
+                <select name="cargo" class="form-control mt-4">
+                    <% cargos.forEach(cargo=>{ %>
+                        <option value="<%= cargo.id %>"><%= cargo.nome %> </option>
+                    <% }) %>
+                </select>
+
+                
 
                 <label for="login">Login</label>
                 <input class="form-control" type="text" name="login">

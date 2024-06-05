@@ -6,6 +6,8 @@ const router = express.Router();
 
 router.get("/estoque/inicio",(req,res)=>{
     Estoque.findAll().then(estoques=>{
+
+       
         res.render('estoque/index',{estoques:estoques});
 
     })
