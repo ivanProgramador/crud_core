@@ -16,11 +16,13 @@ connection.authenticate(()=>{console.log('conectado');}).catch(err=>{console.log
 const Estoque = require("./models/Estoque/Estoque");
 const Funcionario = require("./models/Funcionario/Funcionario");
 const Produto = require("./models/Produto/Produto");
+const Cargo = require("./models/cargo/Cargo");
 
 //controllers
 const estoqueController = require("./models/Estoque/estoqueController");
 const funcionarioController = require("./models/Funcionario/funcionarioController");
 const produtoController = require("./models/Produto/produtoController");
+const cargosController = require("./models/cargo/cargosController");
 
 
 //rotas
@@ -31,6 +33,7 @@ app.get("/",(req,res)=>{
 app.use("/",estoqueController);
 app.use("/",funcionarioController);
 app.use("/",produtoController);
+app.use("/",cargosController);
 
 
 app.listen(8080,()=>{
