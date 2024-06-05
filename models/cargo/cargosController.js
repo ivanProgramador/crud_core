@@ -51,7 +51,7 @@ router.post('/cargo/editar',(req,res)=>{
 router.post("/cargo/apagar",(req,res)=>{
   var id = req.body.id;
 
-  Cargo.destroy({id:id}).then(()=>{
+  Cargo.destroy({where:{id:id}}).then(()=>{
     res.redirect("/cargo/inicio");
   });
 });

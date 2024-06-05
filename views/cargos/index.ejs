@@ -1,0 +1,68 @@
+<%- include('../partials/header.ejs') -%>
+<%- include('../partials/navbar.ejs') -%>
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Cadastro de cargos</h2>
+        </div>
+        <div class="card-body">
+
+            <form action="/cargo/cadastrar" method="post">
+                <label for="nome">Nome</label>
+                <input class="form-control" type="text" name="nome">
+                <label for="nome">Descrição</label>
+                <input class="form-control" type="text" name="descricao">
+                <label for="nome">Codigo</label>
+                <input class="form-control" type="text" name="codigo">
+                <button class="btn btn-success mt-2">Cadastrar</button>
+            </form>
+
+            <hr>
+            <div style="overflow-y: scroll; max-height: 500px;" >
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Codigo</td>
+                        <td>Nome</td>
+                        <td>descrição</td>
+                        <td>Ações</td>
+                    </tr>
+                </thead>
+                <tbody>
+                 <% cargos.forEach(cargo=>{ %> 
+
+                  <tr>
+                     <td><%= cargo.codigo %></td>
+                     <td><%= cargo.nome %></td>
+                     <td><%= cargo.descricao %> </td>
+                     <td>
+                       <a class="btn btn-warning" href="/cargo/editar/<%= cargo.id %>">Editar</a>
+                       <form style="display: inline;" action="/cargo/apagar" method="post">
+                         <input type="hidden" name="id" value="<%= cargo.id %>"></input>
+
+                         <button type="submit" class="btn btn-danger">Apagar</button>
+
+                       </form>
+                     </td>
+                  </tr>       
+
+
+                 <% }) %> 
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+  </div>
+
+
+
+  
+ 
+<%- include('../partials/footer.ejs') -%>

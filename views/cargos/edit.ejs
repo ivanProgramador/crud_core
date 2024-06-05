@@ -1,0 +1,38 @@
+<%- include('../partials/header.ejs') -%>
+<%- include('../partials/navbar.ejs') -%>
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">Formulario de edição de cargo</h2>
+        </div>
+        <div class="card-body">
+
+            <form action="/cargo/editar" method="post">
+                <input type="hidden" name="id" value="<%= cargo.id %>" >
+
+                <label for="nome">Nome</label>
+                <input value="<%= cargo.nome %>" class="form-control" type="text" name="nome">
+                <label  for="nome">Descrição</label>
+                <input value="<%= cargo.descricao %>" class="form-control" type="text" name="descricao">
+                <label  for="nome">Codigo</label>
+                <input value="<%= cargo.codigo %>" class="form-control" type="text" name="codigo">
+                <button class="btn btn-success mt-2">Editar</button>
+                <a class="btn btn-danger mt-2" href="/cargo/inicio">Cancelar</a>
+            </form>
+
+
+            <hr>
+            <div style="overflow-y: scroll; max-height: 500px;" >
+           
+        </div>
+        </div>
+    </div>
+</div>
+
+
+
+  
+ 
+<%- include('../partials/footer.ejs') -%>
