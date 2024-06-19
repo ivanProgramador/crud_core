@@ -9,11 +9,21 @@
     <div style="width: 13%; border:solid 1px black; top: 8%; position:absolute;">
 
         <ul class="list-group">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-            <li class="list-group-item">A fourth item</li>
-            <li class="list-group-item">And a fifth one</li>
+            <li class="list-group-item">
+              <button class="btn btn-primary" >Decrescente por data</button>
+            </li>
+            <li class="list-group-item">
+              <button  class="btn btn-primary" >Crescente por data</button>
+            </li>
+            <li class="list-group-item">
+              <button  class="btn btn-primary" >Decrescente por valor</button>
+            </li>
+            <li class="list-group-item">
+              <button  class="btn btn-primary" >Crescente por valor</button>
+            </li>
+            <li class="list-group-item">
+               valor total do estoque
+            </li>
           </ul>
     
        </div>
@@ -23,32 +33,26 @@
         <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">Descricão</th>
+                <th scope="col">Estoque</th>
+                <th scope="col">Preço</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
+                
+             <%  produtos.forEach(produto=>{ %>
+                 <tr>
+                    <td><%= produto.nome      %></td>
+                    <td><%= produto.codigo     %></td>
+                    <td><%= produto.descricao  %></td>
+                    <td><%= produto.estoque    %></td>
+                    <td><%= produto.preco      %></td>
+
+                 </tr>
+             <% }) %>
+            
           </table>
     
         
