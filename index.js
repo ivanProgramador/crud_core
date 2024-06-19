@@ -23,6 +23,7 @@ const estoqueController = require("./models/Estoque/estoqueController");
 const funcionarioController = require("./models/Funcionario/funcionarioController");
 const produtoController = require("./models/Produto/produtoController");
 const cargosController = require("./models/cargo/cargosController");
+const relatorioController = require("./models/relatorios/relatoriosController");
 
 
 //rotas
@@ -34,6 +35,7 @@ app.use("/",estoqueController);
 app.use("/",funcionarioController);
 app.use("/",produtoController);
 app.use("/",cargosController);
+app.use("/",relatorioController);
 
 
 app.listen(8080,()=>{
