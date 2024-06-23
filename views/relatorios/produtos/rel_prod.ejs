@@ -1,5 +1,11 @@
+<script>
+  const dateFns = require("date-fns");
+</script>
+
 <%- include('../../partials/header.ejs') -%>
 <%- include('../../partials/navbar.ejs') -%>
+
+
 
 
 <div class="container ml-0">
@@ -10,16 +16,34 @@
 
         <ul class="list-group">
             <li class="list-group-item">
-              <button class="btn btn-primary" >Decrescente por data</button>
+
+              <!--CRESCENTE POR VALOR-->
+              <a href="/relatorio_produto/cre_valor">Crescente por valor</a>
+            
             </li>
+
             <li class="list-group-item">
-              <button  class="btn btn-primary" >Crescente por data</button>
+               <!--DECRESCENTE POR VALOR-->
+               <a href="/relatorio_produto/decre_valor">Decrescente por valor</a>
+             
             </li>
+
             <li class="list-group-item">
-              <button  class="btn btn-primary" >Decrescente por valor</button>
+
+              <!--CRESCENTE POR DATA-->
+              <a href="/relatorio_produto/cre_data">Crescente por data</a>
+
+              
+
             </li>
+
             <li class="list-group-item">
-              <button  class="btn btn-primary" >Crescente por valor</button>
+
+              <!--DECRESCENTE POR DATA-->
+              <a href="/relatorio_produto/decre_data">Decrescente por data</a>
+
+              
+
             </li>
            
           </ul>
@@ -36,6 +60,8 @@
                 <th scope="col">Descricão</th>
                 <th scope="col">Estoque</th>
                 <th scope="col">Preço</th>
+                <th scope="col">Data cadastro</th>
+
               </tr>
             </thead>
             <tbody>
@@ -47,6 +73,7 @@
                     <td><%= produto.descricao  %></td>
                     <td><%= produto.estoque    %></td>
                     <td><%= produto.preco      %></td>
+                    <td><%= produto.createdAt %></td>
 
                  </tr>
              <% }) %>
