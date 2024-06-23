@@ -12,9 +12,31 @@
 
    <div style="flex-direction: column;" >
 
-    <div style="width: 13%; border:solid 1px black; top: 8%; position:absolute;">
+    <div style="width: 13%;  top: 8%; position:absolute;">
 
         <ul class="list-group">
+          <div>  
+         <form action="/relatorio_produto_dt" method="post">  
+
+            <li class="list-group-item">
+            <h6 >Busca por data</h6><hr>
+            <label class="badge badge-primary" for="data_inicial">Data inicial</label>
+            <input class="form-control" type="date" name="data_inicial" value="data_inicial" required >
+            <label class="badge badge-primary mt-1" for="data_inicial">Data final</label>
+            <input class="form-control" type="date" name="data_final" value="data_final" required ><br>
+            <input type="submit" value="pesquisar" class="btn btn-primary">
+
+          </form>
+
+        </div>
+
+
+
+
+          
+          </li>
+
+            
             <li class="list-group-item">
 
               <!--CRESCENTE POR VALOR-->
@@ -50,7 +72,7 @@
     
        </div>
 
-       <div style="width: 80%; border:solid 1px blue; position:absolute; top: 8%; left: 14%;">
+       <div style="width: 80%;  position:absolute; top: 8%; left: 14%;">
 
         <table class="table">
             <thead>

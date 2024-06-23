@@ -3,7 +3,7 @@ const router = express.Router();
 const Produto = require("../Produto/Produto");
 const Cargo = require("../cargo/Cargo");
 const Estoque = require("../Estoque/Estoque");
-const { where } = require("sequelize");
+const { where, Sequelize } = require("sequelize");
 const { format } = require('date-fns');
 
 router.get("/relatorio_produto",(req,res)=>{
@@ -46,13 +46,41 @@ router.get("/relatorio_produto/:filtro",(req,res)=>{
       res.render('relatorios/produtos/rel_prod',{produtos:produtos});
    });
 
-
-
   }
 
  
 
 });
+
+
+router.post("/relatorio_produto_dt",async (req,res)=>{
+  
+
+  //data final e data inicial capturadas 
+  var data_inicial = req.body.data_inicial;
+  var data_final = req.body.data_final;
+  
+  
+
+    Produto.findAll({
+      where:{
+         createdAt:{
+           [Sequelize.Op.between]:[new Date(data_inicial), new Date(data_final)]
+         }
+      }
+    }).then(produtos=>{
+
+      res.render('relatorios/produtos/rel_prod',{produtos:produtos});
+
+    }); 
+
+   
+    
+  
+
+});
+
+
 
 
 
