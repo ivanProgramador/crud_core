@@ -3,16 +3,22 @@ const router = express.Router();
 const Produto = require("../Produto/Produto");
 const Cargo = require("../cargo/Cargo");
 const Estoque = require("../Estoque/Estoque");
+const Funcionario = require("../Funcionario/Funcionario");
 const { where, Sequelize } = require("sequelize");
 const { format } = require('date-fns');
 
-router.get("/relatorio_produto",(req,res)=>{
+router.get("/relatorio_produto",async(req,res)=>{
 
-  Produto.findAll().then(produtos=>{
+  const produtos = await Produto.findAll();
 
-      res.render('relatorios/produtos/rel_prod',{produtos:produtos});
+  const formattedProdutos = produtos.map(produto => ({
+    ...produto.dataValues,
+    formattedDate: format(new Date(produto.createdAt), 'dd/MM/yyyy'),
+  }));
 
-  });
+  res.render('relatorios/produtos/rel_prod',{produtos:formattedProdutos});
+
+
 
 });
 
@@ -78,6 +84,11 @@ router.post("/relatorio_produto_dt",async (req,res)=>{
     
   
 
+});
+
+router.get("/relatorio_funcionarios",(req,res)=>{
+
+   
 });
 
 
