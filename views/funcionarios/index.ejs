@@ -16,7 +16,7 @@
                 <input class="form-control" type="text" name="senha">
 
                 <label class="mt-2" for="nome">Cargos</label>
-                <select name="cargo" class="form-control mt-4">
+                <select name="cargoId" class="form-control mt-4">
                     <% cargos.forEach(cargo=>{ %>
                         <option value="<%= cargo.id %>"><%= cargo.nome %> </option>
                     <% }) %>
@@ -52,7 +52,7 @@
                      <td><%= funcionario.id %></td>
                      <td><%= funcionario.nome %></td>
                      <td><%= funcionario.senha %> </td>
-                     <td><%= funcionario.cargo %> </td>
+                     <td><%= funcionario.cargo.nome %> </td>
                      <td><%= funcionario.login %> </td>
                      <td>
                        <a class="btn btn-warning" href="/funcionario/edicao/<%= funcionario.id %>">Editar</a>

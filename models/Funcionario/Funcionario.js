@@ -1,6 +1,7 @@
 const { Sequelize } = require("sequelize");
 const {DataTypes} = require("sequelize");
 const connection = require("../../database/database");
+const Cargo = require("../cargo/Cargo");
 
 const Funcionario = connection.define('funcionario',{
     nome:{
@@ -11,10 +12,6 @@ const Funcionario = connection.define('funcionario',{
         type: DataTypes.STRING,
         allowNull: false,
      },
-     cargo:{
-        type: DataTypes.STRING,
-        allowNull: false,
-     },
      login:{
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -22,7 +19,7 @@ const Funcionario = connection.define('funcionario',{
 
 });
 
+Funcionario.belongsTo(Cargo);
 Funcionario.sync({force:false});
-
 module.exports = Funcionario;
 

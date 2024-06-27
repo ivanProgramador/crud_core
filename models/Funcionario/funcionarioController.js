@@ -7,9 +7,14 @@ const Cargo = require("../cargo/Cargo");
 //rotas de formulario
 router.get("/funcionario/inicio",(req,res)=>{
 
-    Funcionario.findAll().then(funcionarios=>{
+    Funcionario.findAll({
+        include:{model:Cargo}
+    }).then(funcionarios=>{
+
         Cargo.findAll().then(cargos=>{
+
             res.render('funcionarios/index',{funcionarios:funcionarios,cargos:cargos});
+
         });
     });
 });
@@ -31,10 +36,10 @@ router.get("/funcionario/edicao/:id",(req,res)=>{
 
 router.post("/funcionario/cadastrar",(req,res)=>{
 
-    var {nome,senha,cargo,login} = req.body;
+    var {nome,senha,cargoId,login} = req.body;
 
     Funcionario.create(
-        {nome:nome,senha:senha,cargo:cargo,login:login}
+        {nome:nome,senha:senha,login:login,cargoId:cargoId}
     ).then(()=>{
         res.redirect("/funcionario/inicio");
     })

@@ -1,6 +1,7 @@
 const { Sequelize } = require("sequelize");
 const {DataTypes} = require("sequelize");
 const connection = require("../../database/database");
+const Estoque = require("../Estoque/Estoque");
 
 const Produto = connection.define('produto',{
 
@@ -16,10 +17,6 @@ const Produto = connection.define('produto',{
         type: DataTypes.STRING,
         allowNull: false,
     },
-    estoque:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     preco:{
         type: DataTypes.DOUBLE,
         allowNull: false,
@@ -30,6 +27,7 @@ const Produto = connection.define('produto',{
     }
 });
 
+Produto.belongsTo(Estoque);
 Produto.sync({force:false});
 
 module.exports = Produto;

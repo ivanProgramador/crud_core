@@ -6,7 +6,10 @@ const Estoque = require("../Estoque/Estoque");
 //rotas de formulario
 router.get("/produto/inicio",(req,res)=>{
 
-    Produto.findAll().then(produtos=>{
+    Produto.findAll({
+        include:{model:Estoque}
+    }).then(produtos=>{
+
        Estoque.findAll().then(estoques=>{
         
         res.render('produtos/index',{produtos:produtos,estoques:estoques});
@@ -42,10 +45,10 @@ router.get("/produto/editar/:id",(req,res)=>{
 
 router.post("/produto/cadastrar",(req,res)=>{
 
-    var{nome,codigo,descricao,estoque,preco,unidade} = req.body;
+    var{nome,codigo,descricao,estoqueId,preco,unidade} = req.body;
 
     Produto.create(
-        {nome:nome,codigo:codigo,descricao:descricao,estoque:estoque,preco:preco,unidade:unidade}
+        {nome:nome,codigo:codigo,descricao:descricao,estoqueId:estoqueId,preco:preco,unidade:unidade}
     ).then(()=>{
         res.redirect("/produto/inicio")
     });

@@ -19,7 +19,7 @@
                 <input class="form-control" type="text" name="descricao">
                 
                 <label class="mt-2" for="nome">Estoque</label>
-                <select name="estoque" class="form-control mt-4">
+                <select name="estoqueId" class="form-control mt-4">
                     <% estoques.forEach(estoque=>{ %>
                         <option value="<%= estoque.id %>"><%= estoque.nome %> </option>
                     <% }) %>
@@ -58,7 +58,7 @@
                      <td><%= produto.codigo %></td>
                      <td><%= produto.nome %></td>
                      <td><%= produto.descricao %> </td>
-                     <td><%= produto.estoque %> </td>
+                     <td><%= produto.estoque.nome %> </td>
                      <td><%= produto.unidade %> </td>
                      <td><%= produto.preco %> </td>
                      <td>

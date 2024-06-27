@@ -9,7 +9,9 @@ const { format } = require('date-fns');
 
 router.get("/relatorio_produto",async(req,res)=>{
 
-  const produtos = await Produto.findAll();
+  const produtos = await Produto.findAll({
+    include:{model:Estoque}
+});
 
   const formattedProdutos = produtos.map(produto => ({
     ...produto.dataValues,
@@ -17,7 +19,6 @@ router.get("/relatorio_produto",async(req,res)=>{
   }));
 
   res.render('relatorios/produtos/rel_prod',{produtos:formattedProdutos});
-
 
 
 });
@@ -28,27 +29,29 @@ router.get("/relatorio_produto/:filtro",(req,res)=>{
 
   if(filtro=='cre_valor'){
 
-    Produto.findAll({order:[['preco','ASC']]}).then(produtos=>{
+    
+
+    Produto.findAll({order:[['preco','ASC']],include:{model:Estoque} }).then(produtos=>{
       res.render('relatorios/produtos/rel_prod',{produtos:produtos});
   });
 
   }
   else if(filtro == 'decre_valor'){
 
-   Produto.findAll({order:[['preco','DESC']]}).then(produtos=>{
+   Produto.findAll({order:[['preco','DESC']],include:{model:Estoque}}).then(produtos=>{
       res.render('relatorios/produtos/rel_prod',{produtos:produtos});
    });
   }
   else if(filtro == 'cre_data'){
 
-    Produto.findAll({order:[['createdAt','ASC']]}).then(produtos=>{
+    Produto.findAll({order:[['createdAt','ASC']],include:{model:Estoque}}).then(produtos=>{
       res.render('relatorios/produtos/rel_prod',{produtos:produtos});
    });
 
   }
   else if(filtro == 'decre_data'){
 
-    Produto.findAll({order:[['createdAt','DESC']]}).then(produtos=>{
+    Produto.findAll({order:[['createdAt','DESC']],include:{model:Estoque}}).then(produtos=>{
       res.render('relatorios/produtos/rel_prod',{produtos:produtos});
    });
 
@@ -71,7 +74,7 @@ router.post("/relatorio_produto_dt",async (req,res)=>{
     Produto.findAll({
       where:{
          createdAt:{
-           [Sequelize.Op.between]:[new Date(data_inicial), new Date(data_final)]
+           [Sequelize.Op.between]:[new Date(data_inicial), new Date(data_final)],include:{model:Estoque}
          }
       }
     }).then(produtos=>{
@@ -86,8 +89,24 @@ router.post("/relatorio_produto_dt",async (req,res)=>{
 
 });
 
-router.get("/relatorio_funcionarios",(req,res)=>{
 
+
+
+
+
+
+router.get("/relatorio_funcionarios",async(req,res)=>{
+
+  const funcionarios = await Funcionario.findAll();
+
+  const formattedFuncionarios = funcionarios.map(funcionario => ({
+    ...funcionario.dataValues,
+    formattedDate: format(new Date(funcionario.createdAt), 'dd/MM/yyyy'),
+  }));
+
+  
+
+  res.render('relatorios/funcionarios/rel_func',{funcionarios:formattedFuncionarios});
    
 });
 
