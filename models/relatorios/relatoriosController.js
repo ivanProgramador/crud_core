@@ -9,9 +9,7 @@ const { format } = require('date-fns');
 
 router.get("/relatorio_produto",async(req,res)=>{
 
-  const produtos = await Produto.findAll({
-    include:{model:Estoque}
-});
+  const produtos = await Produto.findAll({include:{model:Estoque}});
 
   const formattedProdutos = produtos.map(produto => ({
     ...produto.dataValues,
@@ -23,42 +21,72 @@ router.get("/relatorio_produto",async(req,res)=>{
 
 });
 
-router.get("/relatorio_produto/:filtro",(req,res)=>{
+router.get("/relatorio_produto/:filtro",async(req,res)=>{
 
   var{filtro} = req.params;
 
   if(filtro=='cre_valor'){
 
-    
+    const produtos = await Produto.findAll({order:[['preco','ASC']],include:{model:Estoque}});
 
-    Produto.findAll({order:[['preco','ASC']],include:{model:Estoque} }).then(produtos=>{
-      res.render('relatorios/produtos/rel_prod',{produtos:produtos});
-  });
+    const formattedProdutos = produtos.map(produto => ({
+      ...produto.dataValues,
+      formattedDate: format(new Date(produto.createdAt), 'dd/MM/yyyy'),
+    }));
+
+    res.render('relatorios/produtos/rel_prod',{produtos:formattedProdutos});
+
+
+
+
 
   }
   else if(filtro == 'decre_valor'){
 
-   Produto.findAll({order:[['preco','DESC']],include:{model:Estoque}}).then(produtos=>{
-      res.render('relatorios/produtos/rel_prod',{produtos:produtos});
-   });
+    const produtos = await Produto.findAll({order:[['preco','DESC']],include:{model:Estoque}});
+
+    const formattedProdutos = produtos.map(produto => ({
+      ...produto.dataValues,
+      formattedDate: format(new Date(produto.createdAt), 'dd/MM/yyyy'),
+    }));
+
+    res.render('relatorios/produtos/rel_prod',{produtos:formattedProdutos});
+
+  
+
+
+
+
   }
   else if(filtro == 'cre_data'){
 
-    Produto.findAll({order:[['createdAt','ASC']],include:{model:Estoque}}).then(produtos=>{
-      res.render('relatorios/produtos/rel_prod',{produtos:produtos});
-   });
+    const produtos = await Produto.findAll({order:[['createdAt','ASC']],include:{model:Estoque}});
+
+    const formattedProdutos = produtos.map(produto => ({
+      ...produto.dataValues,
+      formattedDate: format(new Date(produto.createdAt), 'dd/MM/yyyy'),
+    }));
+
+    res.render('relatorios/produtos/rel_prod',{produtos:formattedProdutos});
+
+  
 
   }
   else if(filtro == 'decre_data'){
 
-    Produto.findAll({order:[['createdAt','DESC']],include:{model:Estoque}}).then(produtos=>{
-      res.render('relatorios/produtos/rel_prod',{produtos:produtos});
-   });
+    const produtos = await Produto.findAll({order:[['createdAt','DESC']],include:{model:Estoque}});
+
+    const formattedProdutos = produtos.map(produto => ({
+      ...produto.dataValues,
+      formattedDate: format(new Date(produto.createdAt), 'dd/MM/yyyy'),
+    }));
+
+    res.render('relatorios/produtos/rel_prod',{produtos:formattedProdutos});
+
+
+  
 
   }
-
- 
-
 });
 
 
@@ -69,23 +97,14 @@ router.post("/relatorio_produto_dt",async (req,res)=>{
   var data_inicial = req.body.data_inicial;
   var data_final = req.body.data_final;
   
-  
+  const produtos = await  Produto.findAll({where:{createdAt:{[Sequelize.Op.between]:[new Date(data_inicial), new Date(data_final)]}}});
 
-    Produto.findAll({
-      where:{
-         createdAt:{
-           [Sequelize.Op.between]:[new Date(data_inicial), new Date(data_final)],include:{model:Estoque}
-         }
-      }
-    }).then(produtos=>{
+  const formattedProdutos = produtos.map(produto => ({
+    ...produto.dataValues,
+    formattedDate: format(new Date(produto.createdAt), 'dd/MM/yyyy'),
+  }));
 
-      res.render('relatorios/produtos/rel_prod',{produtos:produtos});
-
-    }); 
-
-   
-    
-  
+  res.render('relatorios/produtos/rel_prod',{produtos:formattedProdutos});
 
 });
 
