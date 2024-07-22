@@ -97,7 +97,14 @@ router.post("/relatorio_produto_dt",async (req,res)=>{
   var data_inicial = req.body.data_inicial;
   var data_final = req.body.data_final;
   
-  const produtos = await  Produto.findAll({where:{createdAt:{[Sequelize.Op.between]:[new Date(data_inicial), new Date(data_final)]}}});
+  const produtos = await  Produto.findAll(
+    {
+      where:{createdAt:{[Sequelize.Op.between]:[new Date(data_inicial),
+       new Date(data_final)]
+      }
+    },
+    include:{model:Estoque}
+  });
 
   const formattedProdutos = produtos.map(produto => ({
     ...produto.dataValues,
