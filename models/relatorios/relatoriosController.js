@@ -284,22 +284,18 @@ router.get("/relatorio_cargos/dec_id",async(req,res)=>{
 
 router.get('/relatorio_estoques',async(req,res)=>{
    
-    const estoques = await Estoque.findAll({
-       attributes:['id','nome'],
-       include:[{model: Produto,
-        attributes:[]
-       }],
-       group:['Estoque.id'],
-       raw:true,
-       nest: true
+    Estoque.findAll().then(estoques=>{
+
+      const quantidadeProdutos = estoques.map(estoques => ({
+        ...estoques.dataValues,
+        quantidadeProdutos: Produto.findAll({where:{estoqueId: estoques.id}}) ,
+      }));
+
+      res.render('relatorios/estoques/rel_est',{estoques});
+       
     });
 
-    for(const estoque of estoques){
-       const count = await Produto.count({where:{EstoqueId: estoque.id}});
-       estoque.quantidadeProdutos = count;
-    }
-
-    res.render('estoques/rel_est',{estoques});
+    
   
  }
 );
