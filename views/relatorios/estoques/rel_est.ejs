@@ -1,0 +1,126 @@
+<script>
+    const dateFns = require("date-fns");
+  </script>
+  
+  <%- include('../../partials/header.ejs') -%>
+  <%- include('../../partials/navbar.ejs') -%>
+  
+  
+  
+  
+  <div class="container ml-0">
+  
+     <div style="flex-direction: column;" >
+  
+      <div style="width: 13%;  top: 8%; position:absolute;">
+  
+          <ul class="list-group">
+            <div>  
+           <form action="/relatorio_funcionarios_dt" method="post">  
+  
+              <li class="list-group-item">
+              <h6 >Busca por data</h6><hr>
+              <label class="badge badge-primary" for="data_inicial">Data inicial</label>
+              <input class="form-control" type="date" name="data_inicial" value="data_inicial" required >
+              <label class="badge badge-primary mt-1" for="data_inicial">Data final</label>
+              <input class="form-control" type="date" name="data_final" value="data_final" required ><br>
+              <input type="submit" value="pesquisar" class="btn btn-primary">
+  
+            </form>
+  
+          </div>
+  
+  
+  
+  
+            
+            </li>
+  
+              
+              <li class="list-group-item">
+  
+                <!--CRESCENTE POR ID-->
+                <a href="#">Crescente por id</a>
+              
+              </li>
+  
+              <li class="list-group-item">
+                 <!--DECRESCENTE POR VALOR-->
+                 <a href="#">Decrescente por id</a>
+               
+              </li>
+  
+              <li class="list-group-item">
+  
+                <!--CRESCENTE POR DATA-->
+                <a href="#">Crescente por data</a>
+  
+                
+  
+              </li>
+  
+              <li class="list-group-item">
+  
+                <!--DECRESCENTE POR DATA-->
+                <a href="#">Decrescente por data</a>
+  
+                
+  
+              </li>
+             
+            </ul>
+      
+         </div>
+  
+         <div style="width: 80%;  position:absolute; top: 8%; left: 14%;">
+  
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Codigo</th>
+                  <th scope="col">Descrição</th>
+                  <th scope="col">Carga</th>
+  
+                </tr>
+              </thead>
+              <tbody>
+                  
+               <%  estoques.forEach(estoque=>{ %>
+                   <tr>
+                      <td><%= estoque.id   %></td>
+                      <td><%= estoque.nome   %></td>
+                      <td><%= estoque.codigo  %></td>
+                      <td><%= estoque.descricao  %></td>
+                      <td><%= estoque.carga %></td>
+                   </tr>
+               <% }) %>
+              
+            </table>
+      
+          
+      
+         </div>
+  
+     </div> 
+  
+    
+  
+  
+  
+  
+  
+  </div>
+   
+        
+     
+  
+    
+    
+  
+  
+  
+    
+   
+  <%- include('../../partials/footer.ejs') -%></input>
