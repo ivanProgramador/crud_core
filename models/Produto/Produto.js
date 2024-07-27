@@ -28,6 +28,7 @@ const Produto = connection.define('produto',{
 });
 
 Produto.belongsTo(Estoque);
+Estoque.hasMany(Produto);
 Produto.sync({force:false});
 
 module.exports = Produto;

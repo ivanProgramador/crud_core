@@ -284,16 +284,13 @@ router.get("/relatorio_cargos/dec_id",async(req,res)=>{
 
 router.get('/relatorio_estoques',async(req,res)=>{
    
-    Estoque.findAll().then(estoques=>{
+   
+  
 
-      const quantidadeProdutos = estoques.map(estoques => ({
-        ...estoques.dataValues,
-        quantidadeProdutos: Produto.findAll({where:{estoqueId: estoques.id}}) ,
-      }));
 
-      res.render('relatorios/estoques/rel_est',{estoques});
-       
-    });
+
+
+
 
     
   
